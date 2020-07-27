@@ -1,0 +1,19 @@
+<div class="container">
+
+    <form [formGroup]="loginForm" style="border: 1rem; margin: 10%;">
+        <div style="text-align: center;">
+            <h1>Formulario de autentificação</h1>
+            <p style="color: lightblue;">Prezado cliente, para realizar o cadastro de imovel por gentileza se autentifique</p>
+            <a style="color: black; " href="#">Criar Conta</a>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="loginUser()">Submit</button>
+    </form>
+</div>
