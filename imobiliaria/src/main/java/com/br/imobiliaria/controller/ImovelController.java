@@ -2,6 +2,7 @@ package com.br.imobiliaria.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,6 @@ public class ImovelController {
 	FotoRepository fotoRepository;
 	UploadFotoUtil uploadFotoUtil = new UploadFotoUtil();
 
-	
 	@CrossOrigin(allowedHeaders = "*")
 	@PostMapping("/criarImovelComFotos/{categoriaImovel}/{tipoProposta}/{endereco}/{bairro}/{condominio}/{descricao}/{valorImovel}")
 	public ResponseEntity<Imovel> criarImovelComFoto(@RequestParam(required = false) MultipartFile file,
@@ -52,7 +52,8 @@ public class ImovelController {
 			@PathVariable(name = "descricao") String descricao, @PathVariable(name = "valorImovel") Double valorImovel)
 			throws IOException {
 
-		Usuario proprietario = usuarioRepository.findByNome(SecurityContextHolder.getContext().getAuthentication().getName());
+		Usuario proprietario = usuarioRepository
+				.findByNome(SecurityContextHolder.getContext().getAuthentication().getName());
 		Imovel imovel = new Imovel(categoriaImovel, tipoProposta, valorImovel, endereco, bairro, condominio, descricao);
 		imovel.setUsuario(new Usuario());
 		imovel.getUsuario().setIdUsuario(proprietario.getIdUsuario());
@@ -72,8 +73,7 @@ public class ImovelController {
 			fotos.add(fotoDb);
 		}
 		imovelSaved.setFotos(new ArrayList<>(fotos));
-		// imovelSaved = imovelRepository.save(imovelSaved);
-
+		
 		return new ResponseEntity<Imovel>(imovelSaved, HttpStatus.OK);
 	}
 
@@ -81,9 +81,13 @@ public class ImovelController {
 	public ResponseEntity<Imovel> criarImovel(@RequestBody ImovelForm imovelForm) {
 		Usuario proprietario = usuarioRepository
 				.findByNome(SecurityContextHolder.getContext().getAuthentication().getName());
-		imovelForm.setIdProprietario(proprietario.getIdUsuario());
+
 		Imovel imovel = new Imovel(imovelForm);
+		imovel.setUsuario(new Usuario());
+		// imovel.setUsuario(proprietario);
+		imovel.getUsuario().setIdUsuario(proprietario.getIdUsuario());
 		imovel = imovelRepository.save(imovel);
+
 		return new ResponseEntity<Imovel>(imovel, HttpStatus.OK);
 	}
 
@@ -101,14 +105,6 @@ public class ImovelController {
 	public List<Imovel> listarImoveis() {
 		ArrayList<Imovel> listaImovel = new ArrayList<>();
 		listaImovel = (ArrayList<Imovel>) imovelRepository.findAll();
-		for (Imovel imovel : listaImovel) {
-			List<Foto> buscarPorIdDoImovel = fotoRepository.buscarPorIdDoImovel(imovel.getId());
-			for (Foto fotoArray : buscarPorIdDoImovel) {
-				fotoArray.setImovel(new Imovel());
-			}
-
-		}
-
 		return listaImovel;
 	}
 

@@ -44,9 +44,9 @@ public class Usuario {
 	
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	
-	@OneToMany(targetEntity = Imovel.class,mappedBy="usuario" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario")
 	private List<Imovel> imoveis;
-	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	
 	
 	
 	
@@ -125,6 +125,18 @@ public class Usuario {
  
 	
 
+	public List<Imovel> getImoveis() {
+		return imoveis;
+	}
+
+
+
+	public void setImoveis(List<Imovel> imoveis) {
+		this.imoveis = imoveis;
+	}
+
+
+
 	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
@@ -136,11 +148,11 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", senha=" + senha + ", role=" + role + ", email="
-				+ email + ", telefone=" + telefone + ", dataCriacao=" + dataCriacao + ", getSenha()=" + getSenha()
-				+ ", getRole()=" + getRole() + ", getIdUsuario()=" + getIdUsuario() + ", getNome()=" + getNome()
-				+ ", getEmail()=" + getEmail() + ", getTelefone()=" + getTelefone() + ", getDataCriacao()="
-				+ getDataCriacao() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ email + ", telefone=" + telefone + ", dataCriacao=" + dataCriacao + ", imoveis=" + imoveis
+				+ ", getSenha()=" + getSenha() + ", getRole()=" + getRole() + ", getIdUsuario()=" + getIdUsuario()
+				+ ", getNome()=" + getNome() + ", getEmail()=" + getEmail() + ", getTelefone()=" + getTelefone()
+				+ ", getImoveis()=" + getImoveis() + ", getDataCriacao()=" + getDataCriacao() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	 
 	

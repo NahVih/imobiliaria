@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.br.imobiliaria.model.Foto;
 import com.br.imobiliaria.model.Imovel;
+import com.br.imobiliaria.model.Usuario;
 import com.br.imobiliaria.repository.FotoRepository;
 import com.br.imobiliaria.repository.ImovelRepository;
 import com.br.imobiliaria.util.UploadFotoUtil;
@@ -74,6 +75,7 @@ public class FotoController {
 		} else {
 			return new ResponseEntity<>("Foto com id -->" + id + " não localizada", HttpStatus.BAD_REQUEST);
 		}
+		foto.setImovel(new Imovel());
 		return new ResponseEntity<>(foto, HttpStatus.OK);
 	}
 
@@ -83,6 +85,10 @@ public class FotoController {
 	@GetMapping("/buscarFotoPorIdImovel/{id}")
 	public List<Foto> fotoByIdImovel(@PathVariable(name = "id") Integer id) {
 		List<Foto> foto = fotoRepository.buscarPorId(id);
+		for (Foto fotoDb : foto) {
+			fotoDb.setImovel(new Imovel());
+			fotoDb.setPicByte(uploadFotoUtil.decompressBytes(fotoDb.getPicByte()));
+		}
 		return foto;
 	}
 

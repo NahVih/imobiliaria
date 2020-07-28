@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -30,6 +31,8 @@ public class Foto {
 	 private byte[] picByte;
 
 	 @ManyToOne
+	 @JoinColumn(name = "imovel_id")
+	 @JsonIgnoreProperties(value = {"fotos", "usuario"})
 	 private Imovel imovel;
 	
 	

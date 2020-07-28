@@ -13,7 +13,7 @@ import com.sun.istack.NotNull;
 
 public class ImovelForm {
 
-	private Integer idProprietario;
+	
 	
 	@Enumerated(EnumType.STRING)
 	private CategoriaImovel categoriaImovel = CategoriaImovel.CASA;
@@ -36,12 +36,7 @@ public class ImovelForm {
 	
 	
 	
-	public Integer getIdProprietario() {
-		return idProprietario;
-	}
-	public void setIdProprietario(Integer idProprietario) {
-		this.idProprietario = idProprietario;
-	}
+	
 	public CategoriaImovel getCategoriaImovel() {
 		return categoriaImovel;
 	}
@@ -92,10 +87,9 @@ public class ImovelForm {
 	}
 	@Override
 	public String toString() {
-		return "ImovelForm [idProprietario=" + idProprietario + ", categoriaImovel=" + categoriaImovel
-				+ ", tipoProposta=" + tipoProposta + ", valorImovel=" + valorImovel + ", endereco=" + endereco
-				+ ", bairro=" + bairro + ", condominio=" + condominio + ", descricao=" + descricao + ", fotos=" + fotos
-				+ ", getIdProprietario()=" + getIdProprietario() + ", getCategoriaImovel()=" + getCategoriaImovel()
+		return "ImovelForm [categoriaImovel=" + categoriaImovel + ", tipoProposta=" + tipoProposta + ", valorImovel="
+				+ valorImovel + ", endereco=" + endereco + ", bairro=" + bairro + ", condominio=" + condominio
+				+ ", descricao=" + descricao + ", fotos=" + fotos + ", getCategoriaImovel()=" + getCategoriaImovel()
 				+ ", getTipoProposta()=" + getTipoProposta() + ", getValorImovel()=" + getValorImovel()
 				+ ", getEndereco()=" + getEndereco() + ", getBairro()=" + getBairro() + ", getCondominio()="
 				+ getCondominio() + ", getDescricao()=" + getDescricao() + ", getFotos()=" + getFotos()

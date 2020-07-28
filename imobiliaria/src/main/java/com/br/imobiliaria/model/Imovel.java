@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.br.imobiliaria.form.ImovelForm;
 import com.br.imobiliaria.repository.UsuarioRepository;
- 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -31,7 +31,9 @@ public class Imovel {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne()
+	@JoinColumn(name = "usuario_idUsuario")
+	@JsonIgnoreProperties(value = "imoveis")
 	private Usuario usuario;
 	
 	@Enumerated(EnumType.STRING)
@@ -51,7 +53,8 @@ public class Imovel {
 	@NotNull
 	private String descricao;
 	
-	@OneToMany(targetEntity = Foto.class,mappedBy="imovel" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "imovel")
+	@JsonIgnoreProperties(value = "imovel")
 	private List<Foto> fotos;
 	
 	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "imovel")
@@ -101,8 +104,7 @@ public class Imovel {
 		this.bairro = imovelForm.getBairro();
 		this.condominio = imovelForm.getCondominio();
 		this.descricao = imovelForm.getDescricao();
-		this.usuario = new Usuario();
-		this.usuario.setIdUsuario(imovelForm.getIdProprietario());
+		
 		}
 
 
