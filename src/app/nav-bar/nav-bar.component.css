@@ -1,0 +1,32 @@
+header {
+    background: lightgrey;
+}
+
+#logo-image {
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+}
+
+#creci {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
+
+#linkCadastroImovel {
+    position: absolute;
+    right: 60px;
+    top: 70px;
+}
+
+#linkCadastroImovel a {
+    text-decoration: none;
+    color: red;
+    font-size: 30px;
+}
+
+#linkCadastroImovel a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: green;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <app-nav-bar></app-nav-bar>
+    <div class="container">
+        <h1 style="text-align: center;">Formulario de cadastro imovel</h1>
+        <form [formGroup]="imovelForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="condominio">Condominio</label>
+                    <input type="text" class="form-control" id="condominio" required formControlName="condominio">
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" required formControlName="endereco">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" required formControlName="bairro">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="condominio">City</label>
+                    <input type="text" class="form-control" id="condominio" required formControlName="condominio">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="descricao">descricao</label>
+                    <input type="text" class="form-control" id="descricao" required formControlName="descricao">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="valorImovel">Valor Imovel</label>
+                    <input type="number" class="form-control" id="valorImovel" required formControlName="valorImovel">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-5 mb-3">
+                    <label for="categoriaImovel">Categoria Imovel</label><br>
+                    <select style="background-color: white; border-radius: 5px; width: 300px; height: 50px;" formControlName="categoriaImovel" id="categoriaImovel">
+                        <option>Selecionar</option>
+                        <option  *ngFor="let categoria of categoriaImoveis">{{categoria}}</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="tipoProposta">Tipo Proposta</label>
+                    <select style="background-color: white; border-radius: 5px; width: 300px; height: 50px;" formControlName="tipoProposta" id="tipoProposta">
+                        <option>Selecionar</option>
+                        <option  *ngFor="let proposta of tipoProposta">{{proposta}}</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+
+            <div class="container row">
+                <div class="col-md-12" style="margin-left: 0px; padding-left: 0px;">
+                    <p style="font-weight: bold;">Upload Foto</p>
+                </div>
+            </div>
+            <div class="container row">
+                <div class="col-md-6" style="margin-left: 0px; padding-left: 0px;">
+                    <input type="file" (change)="onFileChanged($event)" style="margin-bottom: 10px;">
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+
+
+
+    </div>
+
+
+
+
+</body>
+
+</html>
